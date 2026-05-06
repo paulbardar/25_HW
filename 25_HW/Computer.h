@@ -16,7 +16,7 @@ public:
     Computer();
     Computer(string _name, double _frequency, int _ramSiz, bool _dvd, double _price);
     Computer(const Computer& obj);
-    Computer& operator =(const Computer& obj);
+    Computer& operator=(const Computer& obj);
     ~Computer();
 
     void setName(const string& _name);
@@ -24,6 +24,14 @@ public:
     void setRamSize(int _ramSize);
     void setHasDVD(bool _dvd);
     void setPrice(double _price);
+
+    string getName() const;
+    double getFrequency() const;
+    int getRamSize() const;
+    bool getHasDVD() const;
+    double getPrice() const;
+
+    void showInfo()const;
 
 };
 
