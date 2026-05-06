@@ -87,6 +87,60 @@ int main()
     for (const auto& pc : inventory) pc.showInfo();
 
 
+    cout << "==============================================" << endl;
+    cout << "================== 3 task ====================" << endl;
+
+    inventory.push_back(Computer("Acer Aspire DVD", 2.8, 8, true, 14999.0));
+    for (const auto& pc : inventory) {
+        pc.showInfo();
+    }
+
+    int dvdCount = count_if(inventory.begin(), inventory.end(), [](const Computer& c) {
+        return c.getHasDVD();
+        });
+
+    cout << "Number of computers with DVD: " << dvdCount << endl;
+
+
+    cout << "==============================================" << endl;
+    cout << "================== 4 task ====================" << endl << endl;
+
+    cout << "Prices before updates:" << endl;
+    for (const auto& pc : inventory) pc.showInfo();
+
+    
+    std::for_each(inventory.begin(), inventory.end(), [](Computer& c) {
+        if (c.getRamSize() > 16) {
+            double oldPrice = c.getPrice();
+            c.setPrice(oldPrice * 1.1); 
+        }
+        });
+
+    cout << "\nPrices after update (for PCs with RAM > 16GB increased by 10%):" << endl;
+    for (const auto& pc : inventory) pc.showInfo();
+
+
+    cout << "==============================================" << endl;
+    cout << "================== 5 task ====================" << endl << endl;
+
+    inventory.push_back(Computer("Dell OptiPlex", 3.5, 32, true, 42000.0));
+
+    // Sort by ASCENDING price
+    sort(inventory.begin(), inventory.end(), [](const Computer& a, const Computer& b) {
+        return a.getPrice() < b.getPrice(); 
+        });
+
+    cout << "--- Sort by ASCENDING price ---" << std::endl;
+    for (const auto& pc : inventory) pc.showInfo();
+
+    // Sort by DESCENDING price
+    sort(inventory.begin(), inventory.end(), [](const Computer& a, const Computer& b) {
+        return a.getPrice() > b.getPrice(); 
+        });
+
+    cout << "\n--- Sort by DESCENDING price ---" << endl;
+    for (const auto& pc : inventory) pc.showInfo();
+
     return 0;
 }
 
